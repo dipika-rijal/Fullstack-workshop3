@@ -3,6 +3,7 @@ const movieListDiv = document.getElementById("movie-list");
 const searchInput = document.getElementById("search-input");
 const form = document.getElementById("add-movie-form");
 let allMovies = []; // Stores the full, unfiltered list of movies
+
 // Function to dynamically render movies to the HTML
 function renderMovies(moviesToDisplay) {
   movieListDiv.innerHTML = "";
@@ -14,14 +15,15 @@ function renderMovies(moviesToDisplay) {
     const movieElement = document.createElement("div");
     movieElement.classList.add("movie-item");
     movieElement.innerHTML = `
-    <p><strong>${movie.title}</strong> (${movie.year}) - ${movie.genre}</p>
-    <button onclick="editMoviePrompt(${movie.id}, '${movie.title}', ${movie.year},
-    '${movie.genre}')">Edit</button>
-    <button onclick="deleteMovie(${movie.id})">Delete</button>
-    `;
+  <p><strong>${movie.title}</strong> (${movie.year}) - ${movie.genre}</p>
+  <button onclick="editMoviePrompt(${movie.id}, '${movie.title}', ${movie.year},
+  '${movie.genre}')">Edit</button>
+  <button onclick="deleteMovie(${movie.id})">Delete</button>
+  `;
     movieListDiv.appendChild(movieElement);
   });
 }
+
 // Function to fetch all movies and store them (READ)
 function fetchMovies() {
   fetch(API_URL)
@@ -103,9 +105,16 @@ function updateMovie(movieId, updatedMovieData) {
     .catch((error) => console.error("Error updating movie:", error));
 }
 
+// Function to delete a movie with confirmation dialog
 function deleteMovie(movieId) {
+  // Add confirmation dialog
+  const confirmDelete = confirm("Are you sure you want to delete this movie?");
+  
+  if (!confirmDelete) {
+    return; // Exit if user cancels
+  }
+  
   fetch(`${API_URL}/${movieId}`, {
-    // Target the specific resource by ID
     method: "DELETE",
   })
     .then((response) => {

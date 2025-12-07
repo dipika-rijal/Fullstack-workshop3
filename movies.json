@@ -1,12 +1,6 @@
 {
   "movies": [
     {
-      "id": "1",
-      "title": "Inception",
-      "genre": "Sci-Fi",
-      "year": 2010
-    },
-    {
       "id": "2",
       "title": "Pulp Fiction",
       "genre": "Crime",
@@ -19,10 +13,16 @@
       "genre": "funny"
     },
     {
-      "id": "4",
-      "title": "idk",
+      "id": "3",
+      "title": "hhh",
       "genre": "funny",
-      "year": 2025
+      "year": 2006
+    },
+    {
+      "id": "4",
+      "title": "hehehe",
+      "year": 2007,
+      "genre": "horror"
     }
   ]
 }
